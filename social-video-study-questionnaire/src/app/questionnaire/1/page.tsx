@@ -4,14 +4,22 @@ import React, { useState } from "react";
 import Introduction from "../../components/Introduction";
 import IntroductionBehavior from "../../components/IntroductionBehavior";
 import Video from "../../components/Video";
+import BehaviorQuestionnaire from "../../components/BehaviorQuestionnaire";
 
 const AdRelevant_NoInteraction = () => {
+  const adType = "AdRelevant";
+  const interactionMode = "NoInteraction";
   const [step, setStep] = useState(0);
-  const [formData, setFormData] = useState<{ [key: string]: string }>({
+  const [formData, setFormData] = useState<{
+    [key: string]: string | Record<string, string>;
+  }>({
     condition: "1",
   });
 
-  const handleNextPage = (key?: string, value?: string) => {
+  const handleNextPage = (
+    key?: string,
+    value?: string | Record<string, string>,
+  ) => {
     if (key != null && value != null) {
       setFormData((prevData) => ({
         ...prevData,
@@ -32,8 +40,16 @@ const AdRelevant_NoInteraction = () => {
         return (
           <Video
             onSubmit={handleNextPage}
-            videoType="relevantAdVideos"
+            videoType={adType}
             videoIdx={0}
+            interactionMode={interactionMode}
+          />
+        );
+      case 3:
+        return (
+          <BehaviorQuestionnaire
+            onSubmit={handleNextPage}
+            keyName="behavior_1"
           />
         );
       default:

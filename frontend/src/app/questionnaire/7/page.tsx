@@ -3,12 +3,12 @@
 import React, { useState } from "react";
 import Introduction from "../../components/Introduction";
 import IntroductionBehavior from "../../components/IntroductionBehavior";
-import Video from "../../components/Video";
+import Video, { interactionModes } from "../../components/Video";
 import BehaviorQuestionnaire from "../../components/BehaviorQuestionnaire";
 
 const AdIrrelevant_SkippableAfter5Sec = () => {
   const adType = "AdIrrelevant";
-  const interactionMode = "SkippableAfter5Sec";
+  const interactionMode = interactionModes.SkippableAfter5Sec;
   const [step, setStep] = useState(0);
   const [formData, setFormData] = useState<{
     [key: string]: string | Record<string, string>;

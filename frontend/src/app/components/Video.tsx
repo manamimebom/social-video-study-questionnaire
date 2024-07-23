@@ -2,24 +2,25 @@ import { useRef, useState } from "react";
 import Button from "./Button";
 import ReactPlayer from "react-player/youtube";
 
-type InteractionModeType =
-  | "NoInteraction"
-  | "AdPrompt"
-  | "SkippableAfter5Sec"
-  | "ChooseToWatch";
+export enum interactionModes {
+  NoInteraction = "NoInteraction",
+  AdPrompt = "AdPrompt",
+  SkippableAfter5Sec = "SkippableAfter5Sec",
+  ChooseToWatch = "ChooseToWatch", // for ads watching after ChooseToWatch mode
+}
 
 interface IntroductionBehaviorProps {
   onSubmit: (key?: string, value?: string) => void;
   videoType: string;
   videoIdx: number;
-  interactionMode: InteractionModeType;
+  interactionMode: interactionModes;
 }
 
 const Video: React.FC<IntroductionBehaviorProps> = ({
   onSubmit,
   videoType,
   videoIdx,
-  interactionMode = "ChooseToWatch",
+  interactionMode = interactionModes.ChooseToWatch,
 }) => {
   const videos: { [key: string]: string[] } = {
     AdRelevant: ["TKzWOvVJLwM", "niosz8dLVWw", "7-7NaKHt9B0", "BqZZRVubMfY"],
@@ -53,12 +54,12 @@ const Video: React.FC<IntroductionBehaviorProps> = ({
   const playerRef = useRef<ReactPlayer | null>(null);
 
   const handleVideoEnd = () => {
-    if (interactionMode == "SkippableAfter5Sec") {
+    if (interactionMode == interactionModes.SkippableAfter5Sec) {
       onSubmit(
         `behavioral_control_${videoIdx + 1}`,
         isSkipAdsInBehavior.toString(),
       );
-    } else if (interactionMode == "ChooseToWatch") {
+    } else if (interactionMode == interactionModes.ChooseToWatch) {
       onSubmit(
         `decisional_control_${videoIdx + 1}`,
         isWatchAdsInDecision.toString(),
@@ -71,7 +72,7 @@ const Video: React.FC<IntroductionBehaviorProps> = ({
   const handleProgress = (progress: any) => {
     setPlayedSeconds(progress.playedSeconds);
     if (
-      interactionMode == "ChooseToWatch" &&
+      interactionMode == interactionModes.ChooseToWatch &&
       playedSeconds >= videoAdSec[videoID][0] - 2 &&
       playedSeconds < videoAdSec[videoID][0] - 1
     ) {
@@ -87,7 +88,7 @@ const Video: React.FC<IntroductionBehaviorProps> = ({
     }
     setIsSkipAdModalOpen(false);
     setIsPlaying(true);
-    if (interactionMode == "SkippableAfter5Sec") {
+    if (interactionMode == interactionModes.SkippableAfter5Sec) {
       setIsSkipAdsInBehavior(true);
     }
   };
@@ -95,7 +96,7 @@ const Video: React.FC<IntroductionBehaviorProps> = ({
   const handleWatchAd = () => {
     setIsSkipAdModalOpen(false);
     setIsPlaying(true);
-    if (interactionMode == "ChooseToWatch") {
+    if (interactionMode == interactionModes.ChooseToWatch) {
       setIsWatchAdsInDecision(true);
     }
   };
@@ -113,7 +114,7 @@ const Video: React.FC<IntroductionBehaviorProps> = ({
         width="100vw"
         height="100vh"
       />
-      {interactionMode == "AdPrompt" &&
+      {interactionMode == interactionModes.AdPrompt &&
         playedSeconds >= videoAdSec[videoID][0] - 5 &&
         playedSeconds < videoAdSec[videoID][0] && (
           <div className="absolute bottom-6 right-6">
@@ -125,7 +126,7 @@ const Video: React.FC<IntroductionBehaviorProps> = ({
             ></Button>
           </div>
         )}
-      {interactionMode == "SkippableAfter5Sec" &&
+      {interactionMode == interactionModes.SkippableAfter5Sec &&
         playedSeconds >= videoAdSec[videoID][0] + 5 &&
         playedSeconds < videoAdSec[videoID][1] && (
           <div className="absolute bottom-6 right-6">

@@ -3,15 +3,18 @@ import Button from "./Button";
 
 interface IntroductionProps {
   onSubmit: (key: string, value: string) => void;
-  keyName: string;
+  formDataKey: string;
 }
 
-const Introduction: React.FC<IntroductionProps> = ({ onSubmit, keyName }) => {
+const Introduction: React.FC<IntroductionProps> = ({
+  onSubmit,
+  formDataKey,
+}) => {
   const [value, setValue] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit(keyName, value);
+    onSubmit(formDataKey, value);
   };
 
   return (

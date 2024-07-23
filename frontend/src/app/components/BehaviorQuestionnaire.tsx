@@ -3,7 +3,7 @@ import Button from "./Button";
 
 interface BehaviorQuestionnaireProps {
   onSubmit: (key?: string, value?: Record<string, string>) => void;
-  keyName: string;
+  formDataKey: string;
 }
 
 const adsQuestions = [
@@ -21,7 +21,7 @@ const adsQuestions = [
 
 const BehaviorQuestionnaire: React.FC<BehaviorQuestionnaireProps> = ({
   onSubmit,
-  keyName,
+  formDataKey,
 }) => {
   const [answers, setAnswers] = useState<Record<string, string>>({});
 
@@ -34,7 +34,7 @@ const BehaviorQuestionnaire: React.FC<BehaviorQuestionnaireProps> = ({
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    onSubmit(keyName, answers);
+    onSubmit(formDataKey, answers);
   };
 
   return (

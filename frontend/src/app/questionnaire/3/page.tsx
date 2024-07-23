@@ -17,13 +17,13 @@ const AdRelevant_SkippableAfter5Sec = () => {
   });
 
   const handleNextPage = (
-    key?: string,
-    value?: string | Record<string, string>,
+    formDataKey?: string,
+    formDataValue?: string | Record<string, string>,
   ) => {
-    if (key != null && value != null) {
+    if (formDataKey != null && formDataValue != null) {
       setFormData((prevData) => ({
         ...prevData,
-        key: value,
+        formDataKey: formDataValue,
       }));
     }
 
@@ -33,7 +33,7 @@ const AdRelevant_SkippableAfter5Sec = () => {
   const showStep = () => {
     switch (step) {
       case 0:
-        return <Introduction onSubmit={handleNextPage} keyName="name" />;
+        return <Introduction onSubmit={handleNextPage} formDataKey="name" />;
       case 1:
         return <IntroductionBehavior onSubmit={handleNextPage} />;
       case 2:
@@ -49,7 +49,7 @@ const AdRelevant_SkippableAfter5Sec = () => {
         return (
           <BehaviorQuestionnaire
             onSubmit={handleNextPage}
-            keyName="behavior_1"
+            formDataKey="behavior_1"
           />
         );
       default:

@@ -49,7 +49,7 @@ const AdIrrelevant_ChooseToWatch = () => {
         return (
           <BehaviorQuestionnaire
             onSubmit={handleNextPage}
-            formDataKey="behavior_1"
+            formDataKey="answer_part_a_1"
           />
         );
       default:

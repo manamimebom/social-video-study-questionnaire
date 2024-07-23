@@ -45,10 +45,27 @@ const Video: React.FC<IntroductionBehaviorProps> = ({
   const [playedSeconds, setPlayedSeconds] = useState<number>(0);
   const [isPlaying, setIsPlaying] = useState<boolean>(true);
   const [isSkipAdModalOpen, setIsSkipAdModalOpen] = useState<boolean>(false);
+
+  const [isSkipAdsInBehavior, setIsSkipAdsInBehavior] =
+    useState<boolean>(false);
+  const [isWatchAdsInDecision, setIsWatchAdsInDecision] =
+    useState<boolean>(false);
   const playerRef = useRef<ReactPlayer | null>(null);
 
   const handleVideoEnd = () => {
-    onSubmit(undefined, undefined);
+    if (interactionMode == "SkippableAfter5Sec") {
+      onSubmit(
+        `behavioral_control_${videoIdx + 1}`,
+        isSkipAdsInBehavior.toString(),
+      );
+    } else if (interactionMode == "ChooseToWatch") {
+      onSubmit(
+        `decisional_control_${videoIdx + 1}`,
+        isWatchAdsInDecision.toString(),
+      );
+    } else {
+      onSubmit(undefined, undefined);
+    }
   };
 
   const handleProgress = (progress: any) => {
@@ -70,11 +87,17 @@ const Video: React.FC<IntroductionBehaviorProps> = ({
     }
     setIsSkipAdModalOpen(false);
     setIsPlaying(true);
+    if (interactionMode == "SkippableAfter5Sec") {
+      setIsSkipAdsInBehavior(true);
+    }
   };
 
   const handleWatchAd = () => {
     setIsSkipAdModalOpen(false);
     setIsPlaying(true);
+    if (interactionMode == "ChooseToWatch") {
+      setIsWatchAdsInDecision(true);
+    }
   };
 
   return (

@@ -3,11 +3,11 @@
 import React, { useState } from "react";
 import Introduction from "../../components/Introduction";
 import IntroductionBehavior from "../../components/IntroductionBehavior";
-import Video, { interactionModes } from "../../components/Video";
+import Video, { interactionModes, videoTypes } from "../../components/Video";
 import BehaviorQuestionnaire from "../../components/BehaviorQuestionnaire";
 
 const AdRelevant_AdPrompt = () => {
-  const adType = "AdRelevant";
+  const adType = videoTypes.AdRelevant;
   const interactionMode = interactionModes.AdPrompt;
   const [step, setStep] = useState(0);
   const [formData, setFormData] = useState<{

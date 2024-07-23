@@ -2,6 +2,12 @@ import { useRef, useState } from "react";
 import Button from "./Button";
 import ReactPlayer from "react-player/youtube";
 
+export enum videoTypes {
+  AdRelevant = "AdRelevant",
+  AdIrrelevant = "AdIrrelevant",
+  PureAd = "PureAd",
+}
+
 export enum interactionModes {
   NoInteraction = "NoInteraction",
   AdPrompt = "AdPrompt",
@@ -23,9 +29,24 @@ const Video: React.FC<IntroductionBehaviorProps> = ({
   interactionMode = interactionModes.ChooseToWatch,
 }) => {
   const videos: { [key: string]: string[] } = {
-    AdRelevant: ["TKzWOvVJLwM", "niosz8dLVWw", "7-7NaKHt9B0", "BqZZRVubMfY"],
-    AdIrrelevant: ["qd9ozTOmr_o", "rpDvv0LKdnM", "W4NsnJEREGs", "1TpQS3Aq2wc"],
-    ads: ["gpbXte0SbHc", "ws_QEn2VPbI", "W4NsnJEREGs", "TUMxi8S1-I0"],
+    [videoTypes.AdRelevant]: [
+      "TKzWOvVJLwM",
+      "niosz8dLVWw",
+      "7-7NaKHt9B0",
+      "BqZZRVubMfY",
+    ],
+    [videoTypes.AdIrrelevant]: [
+      "qd9ozTOmr_o",
+      "rpDvv0LKdnM",
+      "W4NsnJEREGs",
+      "1TpQS3Aq2wc",
+    ],
+    [videoTypes.PureAd]: [
+      "gpbXte0SbHc",
+      "ws_QEn2VPbI",
+      "W4NsnJEREGs",
+      "TUMxi8S1-I0",
+    ],
   };
 
   const videoAdSec: { [key: string]: number[] } = {
@@ -139,29 +160,30 @@ const Video: React.FC<IntroductionBehaviorProps> = ({
             ></Button>
           </div>
         )}
-      {interactionMode == "ChooseToWatch" && isSkipAdModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-600 bg-opacity-50">
-          <div className="w-11/12 rounded-lg bg-white p-6 shadow-lg md:w-1/3">
-            <p className="mb-24 mt-24 text-center text-xl font-medium">
-              廣告即將播放，請問您是否要觀看廣告？
-            </p>
-            <div className="mb-4 flex justify-evenly">
-              <Button
-                context="是"
-                width="w-16"
-                fontSize="text-lg"
-                onClick={handleWatchAd}
-              ></Button>
-              <Button
-                context="否"
-                width="w-16"
-                fontSize="text-lg"
-                onClick={handleSkipAd}
-              ></Button>
+      {interactionMode == interactionModes.ChooseToWatch &&
+        isSkipAdModalOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-600 bg-opacity-50">
+            <div className="w-11/12 rounded-lg bg-white p-6 shadow-lg md:w-1/3">
+              <p className="mb-24 mt-24 text-center text-xl font-medium">
+                廣告即將播放，請問您是否要觀看廣告？
+              </p>
+              <div className="mb-4 flex justify-evenly">
+                <Button
+                  context="是"
+                  width="w-16"
+                  fontSize="text-lg"
+                  onClick={handleWatchAd}
+                ></Button>
+                <Button
+                  context="否"
+                  width="w-16"
+                  fontSize="text-lg"
+                  onClick={handleSkipAd}
+                ></Button>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
     </>
   );
 };

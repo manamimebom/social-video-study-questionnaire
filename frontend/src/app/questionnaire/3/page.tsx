@@ -3,12 +3,12 @@
 import React, { useState } from "react";
 import Introduction from "../../components/Introduction";
 import IntroductionBehavior from "../../components/IntroductionBehavior";
-import Video from "../../components/Video";
+import Video, { interactionModes, videoTypes } from "../../components/Video";
 import BehaviorQuestionnaire from "../../components/BehaviorQuestionnaire";
 
 const AdRelevant_SkippableAfter5Sec = () => {
-  const adType = "AdRelevant";
-  const interactionMode = "SkippableAfter5Sec";
+  const adType = videoTypes.AdRelevant;
+  const interactionMode = interactionModes.SkippableAfter5Sec;
   const [step, setStep] = useState(0);
   const [formData, setFormData] = useState<{
     [key: string]: string | Record<string, string>;
@@ -17,13 +17,13 @@ const AdRelevant_SkippableAfter5Sec = () => {
   });
 
   const handleNextPage = (
-    key?: string,
-    value?: string | Record<string, string>,
+    formDataKey?: string,
+    formDataValue?: string | Record<string, string>,
   ) => {
-    if (key != null && value != null) {
+    if (formDataKey != null && formDataValue != null) {
       setFormData((prevData) => ({
         ...prevData,
-        key: value,
+        formDataKey: formDataValue,
       }));
     }
 
@@ -33,7 +33,7 @@ const AdRelevant_SkippableAfter5Sec = () => {
   const showStep = () => {
     switch (step) {
       case 0:
-        return <Introduction onSubmit={handleNextPage} keyName="name" />;
+        return <Introduction onSubmit={handleNextPage} formDataKey="name" />;
       case 1:
         return <IntroductionBehavior onSubmit={handleNextPage} />;
       case 2:
@@ -49,7 +49,55 @@ const AdRelevant_SkippableAfter5Sec = () => {
         return (
           <BehaviorQuestionnaire
             onSubmit={handleNextPage}
-            keyName="behavior_1"
+            formDataKey="answer_part_a_1"
+          />
+        );
+      case 4:
+        return (
+          <Video
+            onSubmit={handleNextPage}
+            videoType={adType}
+            videoIdx={1}
+            interactionMode={interactionMode}
+          />
+        );
+      case 5:
+        return (
+          <BehaviorQuestionnaire
+            onSubmit={handleNextPage}
+            formDataKey="answer_part_a_2"
+          />
+        );
+      case 6:
+        return (
+          <Video
+            onSubmit={handleNextPage}
+            videoType={adType}
+            videoIdx={2}
+            interactionMode={interactionMode}
+          />
+        );
+      case 7:
+        return (
+          <BehaviorQuestionnaire
+            onSubmit={handleNextPage}
+            formDataKey="answer_part_a_3"
+          />
+        );
+      case 8:
+        return (
+          <Video
+            onSubmit={handleNextPage}
+            videoType={adType}
+            videoIdx={3}
+            interactionMode={interactionMode}
+          />
+        );
+      case 9:
+        return (
+          <BehaviorQuestionnaire
+            onSubmit={handleNextPage}
+            formDataKey="answer_part_a_4"
           />
         );
       default:

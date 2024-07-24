@@ -6,6 +6,9 @@ import IntroductionBehavior from "../../components/IntroductionBehavior";
 import Video, { interactionModes, videoTypes } from "../../components/Video";
 import BehaviorQuestionnaire from "../../components/BehaviorQuestionnaire";
 import StillWatchAdsExplanation from "../../components/StillWatchAdsExplanation";
+import IntroductionBackground from "../../components/IntroductionBackground";
+import BackgroundQuestionnaire from "../../components/BackgroundQuestionnaire";
+import Closing from "../..//components/Closing";
 
 const AdRelevant_ChooseToWatch = () => {
   const adType = videoTypes.AdRelevant;
@@ -235,7 +238,17 @@ const AdRelevant_ChooseToWatch = () => {
             formDataKey="answer_part_a_4"
           />
         );
-
+      case 26:
+        return <IntroductionBackground onSubmit={handleNextPage} />;
+      case 27:
+        return (
+          <BackgroundQuestionnaire
+            onSubmit={handleNextPage}
+            formDataKey="background"
+          />
+        );
+      case 28:
+        return <Closing formData={formData} />;
       default:
         return <div>Page Not Found</div>;
     }

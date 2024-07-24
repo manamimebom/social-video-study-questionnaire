@@ -26,7 +26,7 @@ const Video: React.FC<IntroductionBehaviorProps> = ({
   onSubmit,
   videoType,
   videoIdx,
-  interactionMode = interactionModes.ChooseToWatch,
+  interactionMode,
 }) => {
   const videos: { [key: string]: string[] } = {
     [videoTypes.AdRelevant]: [

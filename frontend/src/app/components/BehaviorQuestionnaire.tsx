@@ -7,6 +7,7 @@ interface BehaviorQuestionnaireProps {
   oldAnswers?: Record<string, string>;
   showAdsQuestions?: boolean;
   showVideoQuestions?: boolean;
+  lastBehaviorQuestionnaire?: boolean;
 }
 
 const adsQuestions = [
@@ -35,6 +36,7 @@ const BehaviorQuestionnaire: React.FC<BehaviorQuestionnaireProps> = ({
   oldAnswers = {},
   showAdsQuestions = true,
   showVideoQuestions = true,
+  lastBehaviorQuestionnaire = false,
 }) => {
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [isNextStepEnabled, setIsNextStepEnabled] = useState<boolean>(false);
@@ -139,7 +141,11 @@ const BehaviorQuestionnaire: React.FC<BehaviorQuestionnaireProps> = ({
       )}
       <div className="mx-auto my-6 w-fit">
         <Button
-          context={showAdsQuestions ? "觀看下一部影片" : "下一頁"}
+          context={
+            !showAdsQuestions || lastBehaviorQuestionnaire
+              ? "下一頁"
+              : "觀看下一部影片"
+          }
           width="w-40"
           disabled={!isNextStepEnabled}
           onClick={handleSubmit}

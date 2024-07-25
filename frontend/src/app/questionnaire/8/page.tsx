@@ -206,6 +206,7 @@ const AdIrrelevant_ChooseToWatch = () => {
           <BehaviorQuestionnaire // Ads and Video
             onSubmit={handleNextPage}
             formDataKey="answer_part_a_4"
+            lastBehaviorQuestionnaire={true}
           />
         );
       case 22:
@@ -215,6 +216,7 @@ const AdIrrelevant_ChooseToWatch = () => {
             showAdsQuestions={false}
             showVideoQuestions={true}
             formDataKey="answer_part_a_4"
+            lastBehaviorQuestionnaire={true}
           />
         );
       case 23:
@@ -236,6 +238,7 @@ const AdIrrelevant_ChooseToWatch = () => {
             showVideoQuestions={false}
             oldAnswers={formData["answer_part_a_4"] as Record<string, string>}
             formDataKey="answer_part_a_4"
+            lastBehaviorQuestionnaire={true}
           />
         );
       case 26:

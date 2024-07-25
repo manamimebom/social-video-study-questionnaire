@@ -101,6 +101,7 @@ const AdRelevant_AdPrompt = () => {
           <BehaviorQuestionnaire
             onSubmit={handleNextPage}
             formDataKey="answer_part_a_4"
+            lastBehaviorQuestionnaire={true}
           />
         );
       case 10:

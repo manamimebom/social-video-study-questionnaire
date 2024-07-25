@@ -5,6 +5,9 @@ import Introduction from "../../components/Introduction";
 import IntroductionBehavior from "../../components/IntroductionBehavior";
 import Video, { interactionModes, videoTypes } from "../../components/Video";
 import BehaviorQuestionnaire from "../../components/BehaviorQuestionnaire";
+import BackgroundQuestionnaire from "@/app/components/BackgroundQuestionnaire";
+import Closing from "@/app/components/Closing";
+import IntroductionBackground from "@/app/components/IntroductionBackground";
 
 const AdIrrelevant_SkippableAfter5Sec = () => {
   const adType = videoTypes.AdIrrelevant;
@@ -23,7 +26,7 @@ const AdIrrelevant_SkippableAfter5Sec = () => {
     if (formDataKey != null && formDataValue != null) {
       setFormData((prevData) => ({
         ...prevData,
-        formDataKey: formDataValue,
+        [formDataKey]: formDataValue,
       }));
     }
 
@@ -98,8 +101,20 @@ const AdIrrelevant_SkippableAfter5Sec = () => {
           <BehaviorQuestionnaire
             onSubmit={handleNextPage}
             formDataKey="answer_part_a_4"
+            lastBehaviorQuestionnaire={true}
           />
         );
+      case 10:
+        return <IntroductionBackground onSubmit={handleNextPage} />;
+      case 11:
+        return (
+          <BackgroundQuestionnaire
+            onSubmit={handleNextPage}
+            formDataKey="background"
+          />
+        );
+      case 12:
+        return <Closing formData={formData} />;
       default:
         return <div>Page Not Found</div>;
     }

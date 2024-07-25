@@ -6,6 +6,9 @@ import IntroductionBehavior from "../../components/IntroductionBehavior";
 import Video, { interactionModes, videoTypes } from "../../components/Video";
 import BehaviorQuestionnaire from "../../components/BehaviorQuestionnaire";
 import StillWatchAdsExplanation from "../../components/StillWatchAdsExplanation";
+import IntroductionBackground from "@/app/components/IntroductionBackground";
+import BackgroundQuestionnaire from "@/app/components/BackgroundQuestionnaire";
+import Closing from "@/app/components/Closing";
 
 const AdIrrelevant_ChooseToWatch = () => {
   const adType = videoTypes.AdIrrelevant;
@@ -24,7 +27,7 @@ const AdIrrelevant_ChooseToWatch = () => {
     if (formDataKey != null && formDataValue != null) {
       setFormData((prevData) => ({
         ...prevData,
-        formDataKey: formDataValue,
+        [formDataKey]: formDataValue,
       }));
     }
 
@@ -83,7 +86,7 @@ const AdIrrelevant_ChooseToWatch = () => {
           <Video
             onSubmit={handleNextPage}
             videoType={videoTypes.PureAd}
-            videoIdx={0}
+            videoIdx={2}
             interactionMode={interactionModes.NoInteraction}
           />
         );
@@ -129,7 +132,7 @@ const AdIrrelevant_ChooseToWatch = () => {
           <Video
             onSubmit={handleNextPage}
             videoType={videoTypes.PureAd}
-            videoIdx={1}
+            videoIdx={3}
             interactionMode={interactionModes.NoInteraction}
           />
         );
@@ -175,7 +178,7 @@ const AdIrrelevant_ChooseToWatch = () => {
           <Video
             onSubmit={handleNextPage}
             videoType={videoTypes.PureAd}
-            videoIdx={2}
+            videoIdx={0}
             interactionMode={interactionModes.NoInteraction}
           />
         );
@@ -203,6 +206,7 @@ const AdIrrelevant_ChooseToWatch = () => {
           <BehaviorQuestionnaire // Ads and Video
             onSubmit={handleNextPage}
             formDataKey="answer_part_a_4"
+            lastBehaviorQuestionnaire={true}
           />
         );
       case 22:
@@ -212,6 +216,7 @@ const AdIrrelevant_ChooseToWatch = () => {
             showAdsQuestions={false}
             showVideoQuestions={true}
             formDataKey="answer_part_a_4"
+            lastBehaviorQuestionnaire={true}
           />
         );
       case 23:
@@ -221,7 +226,7 @@ const AdIrrelevant_ChooseToWatch = () => {
           <Video
             onSubmit={handleNextPage}
             videoType={videoTypes.PureAd}
-            videoIdx={3}
+            videoIdx={1}
             interactionMode={interactionModes.NoInteraction}
           />
         );
@@ -233,9 +238,20 @@ const AdIrrelevant_ChooseToWatch = () => {
             showVideoQuestions={false}
             oldAnswers={formData["answer_part_a_4"] as Record<string, string>}
             formDataKey="answer_part_a_4"
+            lastBehaviorQuestionnaire={true}
           />
         );
-
+      case 26:
+        return <IntroductionBackground onSubmit={handleNextPage} />;
+      case 27:
+        return (
+          <BackgroundQuestionnaire
+            onSubmit={handleNextPage}
+            formDataKey="background"
+          />
+        );
+      case 28:
+        return <Closing formData={formData} />;
       default:
         return <div>Page Not Found</div>;
     }

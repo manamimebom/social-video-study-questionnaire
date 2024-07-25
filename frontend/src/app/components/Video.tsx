@@ -127,7 +127,7 @@ const Video: React.FC<IntroductionBehaviorProps> = ({
       <ReactPlayer
         ref={playerRef}
         className="absolute left-0 top-0 -z-10"
-        url={`https://www.youtube.com/embed/${videoID}?si=W-Ls-F0BEsr01dcH&t=15s`}
+        url={`https://www.youtube.com/embed/${videoID}?si=W-Ls-F0BEsr01dcH&t=0s`}
         playing={isPlaying}
         controls={true}
         onEnded={handleVideoEnd}

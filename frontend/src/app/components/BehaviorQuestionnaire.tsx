@@ -70,10 +70,10 @@ const BehaviorQuestionnaire: React.FC<BehaviorQuestionnaireProps> = ({
     <>
       {showAdsQuestions && (
         <div key="ads-questions">
-          <p className="mb-4 mt-8 text-xl">
+          <p className="mb-4 mt-8 text-xl font-medium">
             針對上部影片中出現的廣告，下列陳述需要您進行填答（1為非常不同意；7為非常同意）：
           </p>
-          <form onSubmit={handleSubmit} className="space-y-4 p-4">
+          <form onSubmit={handleSubmit} className="space-y-8 p-4">
             {adsQuestions.map((question, index) => (
               <div key={`question-${index + 1}`} className="space-y-2">
                 <label className="block text-xl">{question}</label>

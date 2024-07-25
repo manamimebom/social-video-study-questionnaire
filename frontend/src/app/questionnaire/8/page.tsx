@@ -86,7 +86,7 @@ const AdIrrelevant_ChooseToWatch = () => {
           <Video
             onSubmit={handleNextPage}
             videoType={videoTypes.PureAd}
-            videoIdx={0}
+            videoIdx={2}
             interactionMode={interactionModes.NoInteraction}
           />
         );
@@ -132,7 +132,7 @@ const AdIrrelevant_ChooseToWatch = () => {
           <Video
             onSubmit={handleNextPage}
             videoType={videoTypes.PureAd}
-            videoIdx={1}
+            videoIdx={3}
             interactionMode={interactionModes.NoInteraction}
           />
         );
@@ -178,7 +178,7 @@ const AdIrrelevant_ChooseToWatch = () => {
           <Video
             onSubmit={handleNextPage}
             videoType={videoTypes.PureAd}
-            videoIdx={2}
+            videoIdx={0}
             interactionMode={interactionModes.NoInteraction}
           />
         );
@@ -226,7 +226,7 @@ const AdIrrelevant_ChooseToWatch = () => {
           <Video
             onSubmit={handleNextPage}
             videoType={videoTypes.PureAd}
-            videoIdx={3}
+            videoIdx={1}
             interactionMode={interactionModes.NoInteraction}
           />
         );

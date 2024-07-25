@@ -11,7 +11,7 @@ import IntroductionBackground from "@/app/components/IntroductionBackground";
 
 const AdRelevant_SkippableAfter5Sec = () => {
   const adType = videoTypes.AdRelevant;
-  const interactionMode = interactionModes.SkippableAfter5Sec;
+  const interactionMode = interactionModes.SkippableAfter6Sec;
   const [step, setStep] = useState(0);
   const [formData, setFormData] = useState<{
     [key: string]: string | Record<string, string>;

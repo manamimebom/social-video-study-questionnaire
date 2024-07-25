@@ -26,7 +26,7 @@ const AdIrrelevant_AdPrompt = () => {
     if (formDataKey != null && formDataValue != null) {
       setFormData((prevData) => ({
         ...prevData,
-        formDataKey: formDataValue,
+        [formDataKey]: formDataValue,
       }));
     }
 

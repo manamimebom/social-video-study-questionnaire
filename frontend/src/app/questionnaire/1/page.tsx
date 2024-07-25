@@ -26,7 +26,7 @@ const AdRelevant_NoInteraction = () => {
     if (formDataKey != null && formDataValue != null) {
       setFormData((prevData) => ({
         ...prevData,
-        formDataKey: formDataValue,
+        [formDataKey]: formDataValue,
       }));
     }
 

@@ -3,7 +3,7 @@ import Button from "./Button";
 
 interface BackgroundQuestionnaireProps {
   formDataKey: string;
-  onSubmit: (key?: string, value?: string) => void;
+  onSubmit: (key?: string, value?: Record<string, string>) => void;
 }
 
 const confirmationQuestions = [
@@ -44,7 +44,7 @@ const BackgroundQuestionnaire: React.FC<BackgroundQuestionnaireProps> = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit(formDataKey, undefined);
+    onSubmit(formDataKey, answers);
   };
 
   useEffect(() => {

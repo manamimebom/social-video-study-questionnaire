@@ -139,7 +139,7 @@ const Video: React.FC<IntroductionBehaviorProps> = ({
       {interactionMode == interactionModes.AdPrompt &&
         playedSeconds >= videoAdSec[videoID][0] - 5 &&
         playedSeconds < videoAdSec[videoID][0] && (
-          <div className="absolute bottom-6 right-6">
+          <div className="absolute bottom-28 right-10">
             <Button
               context="即將播放廣告"
               width="w-48"
@@ -151,7 +151,7 @@ const Video: React.FC<IntroductionBehaviorProps> = ({
       {interactionMode == interactionModes.SkippableAfter5Sec &&
         playedSeconds >= videoAdSec[videoID][0] + 5 &&
         playedSeconds < videoAdSec[videoID][1] && (
-          <div className="absolute bottom-6 right-6">
+          <div className="absolute bottom-28 right-10">
             <Button
               context="點此按鈕可略過廣告"
               width="w-64"
@@ -161,6 +161,21 @@ const Video: React.FC<IntroductionBehaviorProps> = ({
             ></Button>
           </div>
         )}
+      {playedSeconds >= videoAdSec[videoID][0] + 1 &&
+        playedSeconds < videoAdSec[videoID][1] && (
+          <div className="absolute bottom-12 left-10">
+            <text className="text-2xl font-medium text-white">贊助商廣告</text>
+          </div>
+        )}
+      {playedSeconds >= videoAdSec[videoID][0] + 1 &&
+        playedSeconds < videoAdSec[videoID][1] && (
+          <div className="absolute bottom-12 right-10">
+            <text className="text-2xl font-medium text-white">
+              即將播放影片
+            </text>
+          </div>
+        )}
+
       {interactionMode == interactionModes.ChooseToWatch &&
         isSkipAdModalOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-600 bg-opacity-50">

@@ -11,7 +11,7 @@ export enum videoTypes {
 export enum interactionModes {
   NoInteraction = "NoInteraction",
   AdPrompt = "AdPrompt",
-  SkippableAfter6Sec = "SkippableAfter5Sec",
+  SkippableAfter6Sec = "SkippableAfter6Sec",
   ChooseToWatch = "ChooseToWatch", // for ads watching after ChooseToWatch mode
 }
 

@@ -195,6 +195,7 @@ const BackgroundQuestionnaire: React.FC<BackgroundQuestionnaireProps> = ({
               <option value="" disabled selected>
                 請選擇職業
               </option>
+              <option value="學生">學生</option>
               <option value="公/私人企業主管階層">公/私人企業主管階層</option>
               <option value="公/私人企業一般職員">公/私人企業一般職員</option>
               <option value="勞務工作者主管階層">勞務工作者主管階層</option>
@@ -203,7 +204,6 @@ const BackgroundQuestionnaire: React.FC<BackgroundQuestionnaireProps> = ({
               <option value="自由業（律師、會計師、建築師、SOHO）">
                 自由業（律師、會計師、建築師、SOHO）
               </option>
-              <option value="學生">學生</option>
               <option value="家務工作者（主婦／主夫）">
                 家務工作者（主婦／主夫）
               </option>

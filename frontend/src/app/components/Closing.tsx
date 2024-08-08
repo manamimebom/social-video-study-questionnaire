@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
+import sendQuestionnaireResult from "../questionnaire/send-questionnaire-result";
 
 interface ClosingProps {
   formData: { [key: string]: string | Record<string, string> };
 }
 
 const Closing: React.FC<ClosingProps> = ({ formData }: ClosingProps) => {
-  console.log(formData);
+  useEffect(() => {
+    console.log(formData);
+    sendQuestionnaireResult(formData);
+  }, [formData]);
+
   return (
     <>
       <p className="mx-10 mb-20 text-xl">

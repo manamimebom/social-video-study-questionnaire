@@ -34,9 +34,7 @@ A web-based application designed to collect experimental results for a master's 
 1. **Frontend:**
    - Built with React and Next.js for server-side rendering and easy deployment.
    - Ensure the application works on regular computer screen sizes.
-
-2. **Backend:**
-   - Simple Node.js server to handle API requests and interact with the Google Sheets API for data storage.
+   - Handle API requests and interact with the Google Sheets API for data storage.
 
 3. **Deployment:**
    - The application will be deployed on Vercel for easy access from multiple lab computers.

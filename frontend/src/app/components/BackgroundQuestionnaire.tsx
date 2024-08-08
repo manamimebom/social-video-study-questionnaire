@@ -3,7 +3,7 @@ import Button from "./Button";
 
 interface BackgroundQuestionnaireProps {
   formDataKey: string;
-  onSubmit: (key?: string, value?: string) => void;
+  onSubmit: (key?: string, value?: Record<string, string>) => void;
 }
 
 const confirmationQuestions = [
@@ -44,7 +44,7 @@ const BackgroundQuestionnaire: React.FC<BackgroundQuestionnaireProps> = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit(formDataKey, undefined);
+    onSubmit(formDataKey, answers);
   };
 
   useEffect(() => {
@@ -95,11 +95,12 @@ const BackgroundQuestionnaire: React.FC<BackgroundQuestionnaireProps> = ({
               4. 請問您的性別是？
             </label>
             <select
+              defaultValue={"請選擇性別"}
               value={answers["4"]}
               onChange={(e) => handleChange("4", e.target.value.toString())}
               className="w-full rounded border p-2"
             >
-              <option value="" disabled selected>
+              <option value="請選擇性別" disabled>
                 請選擇性別
               </option>
               <option value="男性">男性</option>
@@ -111,11 +112,12 @@ const BackgroundQuestionnaire: React.FC<BackgroundQuestionnaireProps> = ({
               5. 請問您的年齡是？
             </label>
             <select
+              defaultValue={"請選擇年齡"}
               value={answers["5"]}
               onChange={(e) => handleChange("5", e.target.value.toString())}
               className="w-full rounded border p-2"
             >
-              <option value="" disabled selected>
+              <option value="請選擇年齡" disabled>
                 請選擇年齡
               </option>
               <option value="14 歲以下">14 歲以下</option>
@@ -138,11 +140,12 @@ const BackgroundQuestionnaire: React.FC<BackgroundQuestionnaireProps> = ({
               6. 請問您的居住地區是？
             </label>
             <select
+              defaultValue={"請選擇居住地區"}
               value={answers["6"]}
               onChange={(e) => handleChange("6", e.target.value.toString())}
               className="w-full rounded border p-2"
             >
-              <option value="" disabled selected>
+              <option value="請選擇居住地區" disabled>
                 請選擇居住地區
               </option>
               <option value="北部地區(台北市、新北市、基隆市、桃園市、新竹縣市、宜蘭縣)">
@@ -164,11 +167,12 @@ const BackgroundQuestionnaire: React.FC<BackgroundQuestionnaireProps> = ({
               7. 請問您的學歷是？
             </label>
             <select
+              defaultValue={"請選擇學歷"}
               value={answers["7"]}
               onChange={(e) => handleChange("7", e.target.value.toString())}
               className="w-full rounded border p-2"
             >
-              <option value="" disabled selected>
+              <option value="請選擇學歷" disabled>
                 請選擇學歷
               </option>
               <option value="高中／職及以下（含肄業）">
@@ -186,11 +190,12 @@ const BackgroundQuestionnaire: React.FC<BackgroundQuestionnaireProps> = ({
               8. 請問您的職業是？
             </label>
             <select
+              defaultValue={"請選擇職業"}
               value={answers["8"]}
               onChange={(e) => handleChange("8", e.target.value.toString())}
               className="w-full rounded border p-2"
             >
-              <option value="" disabled selected>
+              <option value="請選擇職業" disabled>
                 請選擇職業
               </option>
               <option value="公/私人企業主管階層">公/私人企業主管階層</option>

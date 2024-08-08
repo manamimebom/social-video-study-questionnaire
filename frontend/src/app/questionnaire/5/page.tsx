@@ -110,7 +110,7 @@ const AdIrrelevant_NoInteraction = () => {
         return (
           <BackgroundQuestionnaire
             onSubmit={handleNextPage}
-            formDataKey="background"
+            formDataKey="answer_part_b"
           />
         );
       case 12:

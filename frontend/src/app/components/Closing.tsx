@@ -13,7 +13,7 @@ const Closing: React.FC<ClosingProps> = ({ formData }: ClosingProps) => {
 
   return (
     <>
-      <p className="mx-10 mb-20 text-xl">
+      <p className="mx-10 mb-20 text-xl tracking-[.01em]">
         實驗結束，再次感謝您參與本實驗！再次聲明，您的資料將受到我們嚴格保密，若有任何問題，歡迎您聯絡研究人員。
       </p>
 

@@ -15,7 +15,7 @@ const StillWatchAdsExplanation: React.FC<StillWatchAdsExplanationProps> = ({
 
   return (
     <>
-      <p className="mx-10 mb-20 text-xl">
+      <p className="mx-10 mb-20 text-xl tracking-[.01em]">
         為了幫助我們了解廣告與影片的相關性，仍需要請您觀看上一部影片中置入的廣告影片，並回答相關問題，非常感謝！
       </p>
 

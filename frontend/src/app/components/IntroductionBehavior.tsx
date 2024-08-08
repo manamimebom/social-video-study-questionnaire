@@ -15,16 +15,13 @@ const IntroductionBehavior: React.FC<IntroductionBehaviorProps> = ({
 
   return (
     <>
-      <p className="mb-4 text-xl">第一部分：</p>
-      <p className="mb-20 text-xl">
-        請想像您在日常生活中瀏覽社群影音（如：YouTube），您將觀看 2 部寵物影片與
-        2 部運動影片，每部影片中會置入
-        <span className="font-semibold underline">與您或與該影片相關的</span>
-        廣告影片，請根據螢幕的提示進行操作，
-        <span className="font-semibold underline">
-          勿任意點按暫停、移動影片時間軸或調整播放速度
-        </span>
-        ，每部影片觀看結束會請您回答與影片相關的問題以及網頁操作使用感受。
+      <p className="mb-4 text-xl tracking-wide">第一部分：</p>
+      <p className="mb-20 text-xl leading-loose tracking-[.01em]">
+        請想像您在日常生活中瀏覽社群影音（如：YouTube），您將觀看 2 部運動影片與
+        2 部寵物影片，每部影片中會
+        <span className="font-semibold underline">置入廣告影片</span>
+        ，請您仔細觀看影片與廣告，並根據螢幕上的提示進行操作，
+        每部影片觀看結束會請您回答與影片相關的問題以及網頁操作使用感受。
       </p>
 
       <p className="mb-4 text-center text-xl">

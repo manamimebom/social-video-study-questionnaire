@@ -52,13 +52,13 @@ const Video: React.FC<IntroductionBehaviorProps> = ({
   const videoAdSec: { [key: string]: number[] } = {
     // AdRelevant
     TKzWOvVJLwM: [97, 129],
-    niosz8dLVWw: [104, 137],
+    niosz8dLVWw: [105, 137],
     "7-7NaKHt9B0": [91, 127],
     BqZZRVubMfY: [94, 129],
 
     // AdIrrelevant
     qd9ozTOmr_o: [97, 133],
-    rpDvv0LKdnM: [104, 139],
+    rpDvv0LKdnM: [105, 139],
     W4NsnJEREGs: [91, 123],
     "1TpQS3Aq2wc": [94, 126],
   };
@@ -139,7 +139,7 @@ const Video: React.FC<IntroductionBehaviorProps> = ({
       {interactionMode == interactionModes.AdPrompt &&
         playedSeconds >= videoAdSec[videoID][0] - 5 &&
         playedSeconds < videoAdSec[videoID][0] && (
-          <div className="absolute bottom-6 right-6">
+          <div className="absolute bottom-28 right-10">
             <Button
               context="即將播放廣告"
               width="w-48"
@@ -151,7 +151,7 @@ const Video: React.FC<IntroductionBehaviorProps> = ({
       {interactionMode == interactionModes.SkippableAfter6Sec &&
         playedSeconds >= videoAdSec[videoID][0] + 6 &&
         playedSeconds < videoAdSec[videoID][1] && (
-          <div className="absolute bottom-6 right-6">
+          <div className="absolute bottom-28 right-10">
             <Button
               context="點此按鈕可略過廣告"
               width="w-64"

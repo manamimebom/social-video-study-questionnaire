@@ -34,7 +34,7 @@ export default async function sendQuestionnaireResult(formData: {
   try {
     await doc.loadInfo();
     const sheet = doc.sheetsByIndex[0];
-    await await sheet.addRows([data]);
+    await sheet.addRows([data]);
   } catch (error) {
     console.error(error);
   }

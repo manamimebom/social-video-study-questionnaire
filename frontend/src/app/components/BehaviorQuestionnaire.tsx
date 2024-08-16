@@ -17,10 +17,6 @@ const adsQuestions = [
   "4. 當我看到影片中的廣告，我認為這則廣告是與我有關的",
   "5. 當我看到影片中的廣告，我認為這則廣告是對我很有意義的",
   "6. 當我看到影片中的廣告，我認為這則廣告是對我有價值的",
-  "7. 當我看到影片中的廣告，我認為這則廣告與這部影片相配",
-  "8. 當我看到影片中的廣告，我認為這則廣告很適合這部影片",
-  "9. 當我看到影片中的廣告，我認為這則廣告與這部影片很有相關性",
-  "10. 當我看到影片中的廣告，我認為這則廣告與這部影片很搭",
 ];
 
 const videoQuestions = [
@@ -59,12 +55,16 @@ const BehaviorQuestionnaire: React.FC<BehaviorQuestionnaireProps> = ({
   };
 
   useEffect(() => {
-    if (showAdsQuestions && Object.keys(answers).length === 14) {
+    if (
+      showAdsQuestions &&
+      Object.keys(answers).length ===
+        adsQuestions.length + videoQuestions.length
+    ) {
       setIsNextStepEnabled(true);
     } else if (
       !showAdsQuestions &&
       showVideoQuestions &&
-      Object.keys(answers).length === 4
+      Object.keys(answers).length === videoQuestions.length
     ) {
       setIsNextStepEnabled(true);
     }

@@ -29,6 +29,11 @@ export default async function sendQuestionnaireResult(formData: {
       formData["answer_part_b"] as Record<string, string>
     )[`${i}`];
   }
+  for (let i = 1; i <= 8; i++) {
+    data[`answer_part_c_${i}`] = (
+      formData["answer_part_c"] as Record<string, string>
+    )[`${i}`];
+  }
   data["submitted_at"] = new Date().toISOString();
 
   try {

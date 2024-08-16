@@ -9,6 +9,8 @@ import StillWatchAdsExplanation from "../../components/StillWatchAdsExplanation"
 import IntroductionBackground from "@/app/components/IntroductionBackground";
 import BackgroundQuestionnaire from "@/app/components/BackgroundQuestionnaire";
 import Closing from "@/app/components/Closing";
+import IntroductionOverall from "@/app/components/IntroductionOverall";
+import OverallQuestionnaire from "@/app/components/OverallQuestionnaire";
 
 const AdIrrelevant_ChooseToWatch = () => {
   const adType = videoTypes.AdIrrelevant;
@@ -242,15 +244,24 @@ const AdIrrelevant_ChooseToWatch = () => {
           />
         );
       case 26:
-        return <IntroductionBackground onSubmit={handleNextPage} />;
+        return <IntroductionOverall onSubmit={handleNextPage} />;
       case 27:
         return (
-          <BackgroundQuestionnaire
+          <OverallQuestionnaire
             onSubmit={handleNextPage}
             formDataKey="answer_part_b"
           />
         );
       case 28:
+        return <IntroductionBackground onSubmit={handleNextPage} />;
+      case 29:
+        return (
+          <BackgroundQuestionnaire
+            onSubmit={handleNextPage}
+            formDataKey="answer_part_c"
+          />
+        );
+      case 30:
         return <Closing formData={formData} />;
       default:
         return <div>Page Not Found</div>;

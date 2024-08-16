@@ -61,15 +61,19 @@ const BackgroundQuestionnaire: React.FC<BackgroundQuestionnaireProps> = ({
   return (
     <>
       <form>
-        <p className="mb-4 mt-8 text-xl font-bold -indent-5">
-          針對以上四部影片的觀看體驗，下列陳述需要您進行填答            
-          <span className="font-semibold underline">（1 為非常不同意；7 為非常同意）</span>
+        <p className="mb-4 mt-8 -indent-5 text-xl font-bold">
+          針對以上四部影片的觀看體驗，下列陳述需要您進行填答
+          <span className="font-semibold underline">
+            （1 為非常不同意；7 為非常同意）
+          </span>
           ：
         </p>
         <div className="space-y-8 p-0">
           {confirmationQuestions.map((question, index) => (
             <div key={`question-${index + 1}`} className="space-y-2">
-              <label className="mb-3 mt-6 block text-xl -indent-4">{question}</label>
+              <label className="mb-3 mt-6 block -indent-4 text-xl">
+                {question}
+              </label>
               <div className="flex justify-between">
                 {[1, 2, 3, 4, 5, 6, 7].map((value) => (
                   <label key={value} className="flex flex-col space-y-2">
@@ -90,10 +94,12 @@ const BackgroundQuestionnaire: React.FC<BackgroundQuestionnaireProps> = ({
             </div>
           ))}
         </div>
-        <p className="mb-4 mt-12 text-xl font-bold -indent-5">以下問題是關於您的基本資料：</p>
+        <p className="mb-4 mt-12 -indent-5 text-xl font-bold">
+          以下問題是關於您的基本資料：
+        </p>
         <div className="space-y-8 p-0">
           <div key="question-4" className="space-y-2">
-            <label className="mb-3 mt-6 block text-xl -indent-4">
+            <label className="mb-3 mt-6 block -indent-4 text-xl">
               4. 請問您的性別是？
             </label>
             <select
@@ -110,7 +116,7 @@ const BackgroundQuestionnaire: React.FC<BackgroundQuestionnaireProps> = ({
             </select>
           </div>
           <div key="question-5" className="space-y-2">
-            <label className="mb-3 mt-6 block text-xl -indent-4">
+            <label className="mb-3 mt-6 block -indent-4 text-xl">
               5. 請問您的年齡是？
             </label>
             <select
@@ -138,7 +144,7 @@ const BackgroundQuestionnaire: React.FC<BackgroundQuestionnaireProps> = ({
             </select>
           </div>
           <div key="question-6" className="space-y-2">
-            <label className="mb-3 mt-6 block text-xl -indent-4">
+            <label className="mb-3 mt-6 block -indent-4 text-xl">
               6. 請問您的居住地區是？
             </label>
             <select
@@ -165,7 +171,7 @@ const BackgroundQuestionnaire: React.FC<BackgroundQuestionnaireProps> = ({
             </select>
           </div>
           <div key="question-7" className="space-y-2">
-            <label className="mb-3 mt-6 block text-xl -indent-4">
+            <label className="mb-3 mt-6 block -indent-4 text-xl">
               7. 請問您的學歷是？
             </label>
             <select
@@ -188,7 +194,7 @@ const BackgroundQuestionnaire: React.FC<BackgroundQuestionnaireProps> = ({
             </select>
           </div>
           <div key="question-8" className="space-y-2">
-            <label className="mb-3 mt-6 block text-xl -indent-4">
+            <label className="mb-3 mt-6 block -indent-4 text-xl">
               8. 請問您的職業是？
             </label>
             <select
@@ -218,7 +224,7 @@ const BackgroundQuestionnaire: React.FC<BackgroundQuestionnaireProps> = ({
             </select>
           </div>
           <div key="question-9" className="space-y-2">
-            <label className="mb-3 mt-6 block text-xl -indent-4">
+            <label className="mb-3 mt-6 block -indent-4 text-xl">
               9. 過去一年內，請問您有使用下列哪管道收看影音內容？（可複選）
             </label>
             {[
@@ -248,7 +254,7 @@ const BackgroundQuestionnaire: React.FC<BackgroundQuestionnaireProps> = ({
           </div>
 
           <div key="question-10" className="space-y-2">
-            <label className="mb-3 mt-6 block text-xl -indent-4">
+            <label className="mb-3 mt-6 block -indent-4 text-xl">
               10. 過去一年內，請問您最主要使用下列哪個管道收看影音內容？（單選）
             </label>
             {[
@@ -279,7 +285,7 @@ const BackgroundQuestionnaire: React.FC<BackgroundQuestionnaireProps> = ({
           </div>
 
           <div key="question-11" className="space-y-2">
-            <label className="mb-3 mt-6 block text-xl -indent-4">
+            <label className="mb-3 mt-6 block -indent-4 text-xl">
               11. 過去一年內，請問您較常收看哪些內容類型的社群影音？（可複選）
             </label>
             <div className="grid grid-cols-2 gap-2">

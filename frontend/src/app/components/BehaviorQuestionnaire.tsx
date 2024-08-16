@@ -19,7 +19,7 @@ const adsQuestions = [
   "6. 當我看到影片中的廣告，我認為這則廣告是對我有價值的",
   "7. 當我看到影片中的廣告，我認為這則廣告與這部影片相配",
   "8. 當我看到影片中的廣告，我認為這則廣告很適合這部影片",
-  "9. 當我看到影片中的廣告，我認為這則廣告與這部影片有相關性",
+  "9. 當我看到影片中的廣告，我認為這則廣告與這部影片很有相關性",
   "10. 當我看到影片中的廣告，我認為這則廣告與這部影片很搭",
 ];
 
@@ -72,7 +72,7 @@ const BehaviorQuestionnaire: React.FC<BehaviorQuestionnaireProps> = ({
         <div key="ads-questions">
           <p className="mb-4 mt-8 text-xl font-bold -indent-5">
             針對上部影片中出現的廣告，下列陳述需要您進行填答
-            <span className="font-semibold underline">（1 為非常不同意；7 為非常同意）</span>
+            <span className="text-[22px] font-bold underline text-red-700">（1 為非常不同意；7 為非常同意）</span>
             ：
           </p>
           <form onSubmit={handleSubmit} className="space-y-8 p-4">
@@ -105,7 +105,7 @@ const BehaviorQuestionnaire: React.FC<BehaviorQuestionnaireProps> = ({
         <div key="video-questions">
           <p className="mb-4 mt-8 text-xl font-bold -indent-5">
             針對上部影片的觀看體驗，下列陳述需要您進行填答            
-            <span className="font-semibold underline">（1 為非常不同意；7 為非常同意）</span>
+            <span className="text-[22px] font-bold underline text-red-700">（1 為非常不同意；7 為非常同意）</span>
             ：
           </p>
           <form onSubmit={handleSubmit} className="space-y-8 p-4">

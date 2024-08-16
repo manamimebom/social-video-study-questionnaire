@@ -18,15 +18,20 @@ export default async function sendQuestionnaireResult(formData: {
     data[`decisional_control_${i}`] = (
       formData[`decisional_control_${i}`] || ""
     ).toString();
-    for (let j = 1; j <= 14; j++) {
+    for (let j = 1; j <= 10; j++) {
       data[`answer_part_a_${i}_${j}`] = (
         formData[`answer_part_a_${i}`] as Record<string, string>
       )[`${j}`];
     }
   }
-  for (let i = 1; i <= 11; i++) {
+  for (let i = 1; i <= 7; i++) {
     data[`answer_part_b_${i}`] = (
       formData["answer_part_b"] as Record<string, string>
+    )[`${i}`];
+  }
+  for (let i = 1; i <= 8; i++) {
+    data[`answer_part_c_${i}`] = (
+      formData["answer_part_c"] as Record<string, string>
     )[`${i}`];
   }
   data["submitted_at"] = new Date().toISOString();
@@ -34,7 +39,7 @@ export default async function sendQuestionnaireResult(formData: {
   try {
     await doc.loadInfo();
     const sheet = doc.sheetsByIndex[0];
-    await await sheet.addRows([data]);
+    await sheet.addRows([data]);
   } catch (error) {
     console.error(error);
   }

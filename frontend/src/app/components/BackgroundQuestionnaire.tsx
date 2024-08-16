@@ -6,17 +6,12 @@ interface BackgroundQuestionnaireProps {
   onSubmit: (key?: string, value?: Record<string, string>) => void;
 }
 
-const confirmationQuestions = [
-  "1. 當廣告播放前，我會被提示廣告即將播放",
-  "2. 當廣告播放前，我會被詢問是否要觀看廣告",
-  "3. 當廣告播放後，我會被詢問是否要略過廣告",
-];
-
 const BackgroundQuestionnaire: React.FC<BackgroundQuestionnaireProps> = ({
   formDataKey,
   onSubmit,
 }) => {
   const [answers, setAnswers] = useState<Record<string, string>>({});
+  const [isErrors, setIsErrors] = useState<Record<string, boolean>>({});
   const [isNextStepEnabled, setIsNextStepEnabled] = useState<boolean>(false);
 
   const handleChange = (question_index: string, value: string) => {
@@ -48,8 +43,16 @@ const BackgroundQuestionnaire: React.FC<BackgroundQuestionnaireProps> = ({
   };
 
   useEffect(() => {
+    const maxProgress = Math.max(...Object.keys(answers).map(Number));
+    for (let i = 1; i <= maxProgress; i++) {
+      if (answers[i] === undefined || answers[i] === "") {
+        setIsErrors((prevErrors) => ({ ...prevErrors, [i]: true }));
+      } else {
+        setIsErrors((prevErrors) => ({ ...prevErrors, [i]: false }));
+      }
+    }
     if (
-      Object.keys(answers).length === 11 &&
+      Object.keys(answers).length === 8 &&
       Object.values(answers).every((value) => value !== "")
     ) {
       setIsNextStepEnabled(true);
@@ -61,51 +64,21 @@ const BackgroundQuestionnaire: React.FC<BackgroundQuestionnaireProps> = ({
   return (
     <>
       <form>
-        <p className="mb-4 mt-8 -indent-5 text-xl font-bold">
-          針對以上四部影片的觀看體驗，下列陳述需要您進行填答
-          <span className="font-semibold underline">
-            （1 為非常不同意；7 為非常同意）
-          </span>
-          ：
-        </p>
-        <div className="space-y-8 p-0">
-          {confirmationQuestions.map((question, index) => (
-            <div key={`question-${index + 1}`} className="space-y-2">
-              <label className="mb-3 mt-6 block -indent-4 text-xl">
-                {question}
-              </label>
-              <div className="flex justify-between">
-                {[1, 2, 3, 4, 5, 6, 7].map((value) => (
-                  <label key={value} className="flex flex-col space-y-2">
-                    <span className="text-xl">{value}</span>
-                    <input
-                      type="radio"
-                      name={`answer-${index + 1}`}
-                      value={value}
-                      checked={answers[index + 1] === value.toString()}
-                      onChange={() =>
-                        handleChange((index + 1).toString(), value.toString())
-                      }
-                      className="scale-150 border-gray-700 text-blue-600 drop-shadow"
-                    />
-                  </label>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
         <p className="mb-4 mt-12 -indent-5 text-xl font-bold">
-          以下問題是關於您的基本資料：
+          以下八題是關於您的基本資料：
         </p>
         <div className="space-y-8 p-0">
-          <div key="question-4" className="space-y-2">
+          <div
+            key="question-1"
+            className={`space-y-2 ${isErrors["1"] ? "text-red-600" : ""}`}
+          >
             <label className="mb-3 mt-6 block -indent-4 text-xl">
-              4. 請問您的性別是？
+              1. 請問您的性別是？
             </label>
             <select
               defaultValue={"請選擇性別"}
-              value={answers["4"]}
-              onChange={(e) => handleChange("4", e.target.value.toString())}
+              value={answers["1"]}
+              onChange={(e) => handleChange("1", e.target.value.toString())}
               className="w-full rounded border p-2"
             >
               <option value="請選擇性別" disabled>
@@ -115,14 +88,17 @@ const BackgroundQuestionnaire: React.FC<BackgroundQuestionnaireProps> = ({
               <option value="女性">女性</option>
             </select>
           </div>
-          <div key="question-5" className="space-y-2">
+          <div
+            key="question-2"
+            className={`space-y-2 ${isErrors["2"] ? "text-red-600" : ""}`}
+          >
             <label className="mb-3 mt-6 block -indent-4 text-xl">
-              5. 請問您的年齡是？
+              2. 請問您的年齡是？
             </label>
             <select
               defaultValue={"請選擇年齡"}
-              value={answers["5"]}
-              onChange={(e) => handleChange("5", e.target.value.toString())}
+              value={answers["2"]}
+              onChange={(e) => handleChange("2", e.target.value.toString())}
               className="w-full rounded border p-2"
             >
               <option value="請選擇年齡" disabled>
@@ -143,14 +119,17 @@ const BackgroundQuestionnaire: React.FC<BackgroundQuestionnaireProps> = ({
               <option value="70 歲以上">70 歲以上</option>
             </select>
           </div>
-          <div key="question-6" className="space-y-2">
+          <div
+            key="question-3"
+            className={`space-y-2 ${isErrors["3"] ? "text-red-600" : ""}`}
+          >
             <label className="mb-3 mt-6 block -indent-4 text-xl">
-              6. 請問您的居住地區是？
+              3. 請問您的居住地區是？
             </label>
             <select
               defaultValue={"請選擇居住地區"}
-              value={answers["6"]}
-              onChange={(e) => handleChange("6", e.target.value.toString())}
+              value={answers["3"]}
+              onChange={(e) => handleChange("3", e.target.value.toString())}
               className="w-full rounded border p-2"
             >
               <option value="請選擇居住地區" disabled>
@@ -170,14 +149,17 @@ const BackgroundQuestionnaire: React.FC<BackgroundQuestionnaireProps> = ({
               </option>
             </select>
           </div>
-          <div key="question-7" className="space-y-2">
+          <div
+            key="question-4"
+            className={`space-y-2 ${isErrors["4"] ? "text-red-600" : ""}`}
+          >
             <label className="mb-3 mt-6 block -indent-4 text-xl">
-              7. 請問您的學歷是？
+              4. 請問您的學歷是？
             </label>
             <select
               defaultValue={"請選擇學歷"}
-              value={answers["7"]}
-              onChange={(e) => handleChange("7", e.target.value.toString())}
+              value={answers["4"]}
+              onChange={(e) => handleChange("4", e.target.value.toString())}
               className="w-full rounded border p-2"
             >
               <option value="請選擇學歷" disabled>
@@ -193,14 +175,17 @@ const BackgroundQuestionnaire: React.FC<BackgroundQuestionnaireProps> = ({
               </option>
             </select>
           </div>
-          <div key="question-8" className="space-y-2">
+          <div
+            key="question-5"
+            className={`space-y-2 ${isErrors["5"] ? "text-red-600" : ""}`}
+          >
             <label className="mb-3 mt-6 block -indent-4 text-xl">
-              8. 請問您的職業是？
+              5. 請問您的職業是？
             </label>
             <select
               defaultValue={"請選擇職業"}
-              value={answers["8"]}
-              onChange={(e) => handleChange("8", e.target.value.toString())}
+              value={answers["5"]}
+              onChange={(e) => handleChange("5", e.target.value.toString())}
               className="w-full rounded border p-2"
             >
               <option value="請選擇職業" disabled>
@@ -223,9 +208,12 @@ const BackgroundQuestionnaire: React.FC<BackgroundQuestionnaireProps> = ({
               <option value="其它">其它</option>
             </select>
           </div>
-          <div key="question-9" className="space-y-2">
+          <div
+            key="question-6"
+            className={`space-y-2 ${isErrors["6"] ? "text-red-600" : ""}`}
+          >
             <label className="mb-3 mt-6 block -indent-4 text-xl">
-              9. 過去一年內，請問您有使用下列哪管道收看影音內容？（可複選）
+              6. 過去一年內，請問您有使用下列哪管道收看影音內容？（可複選）
             </label>
             {[
               "一般電視(含無線和有線電視)",
@@ -243,7 +231,7 @@ const BackgroundQuestionnaire: React.FC<BackgroundQuestionnaireProps> = ({
                     type="checkbox"
                     value={option}
                     onChange={(e) =>
-                      handleMultipleChoiceChange("9", e.target.value.toString())
+                      handleMultipleChoiceChange("6", e.target.value.toString())
                     }
                     className="mr-2"
                   />
@@ -252,10 +240,12 @@ const BackgroundQuestionnaire: React.FC<BackgroundQuestionnaireProps> = ({
               </div>
             ))}
           </div>
-
-          <div key="question-10" className="space-y-2">
+          <div
+            key="question-7"
+            className={`space-y-2 ${isErrors["7"] ? "text-red-600" : ""}`}
+          >
             <label className="mb-3 mt-6 block -indent-4 text-xl">
-              10. 過去一年內，請問您最主要使用下列哪個管道收看影音內容？（單選）
+              7. 過去一年內，請問您最主要使用下列哪個管道收看影音內容？（單選）
             </label>
             {[
               "一般電視(含無線和有線電視)",
@@ -273,9 +263,9 @@ const BackgroundQuestionnaire: React.FC<BackgroundQuestionnaireProps> = ({
                     type="radio"
                     value={option}
                     onChange={(e) =>
-                      handleChange("10", e.target.value.toString())
+                      handleChange("7", e.target.value.toString())
                     }
-                    checked={answers["10"] === option}
+                    checked={answers["7"] === option}
                     className="mr-2"
                   />
                   {option}
@@ -284,9 +274,12 @@ const BackgroundQuestionnaire: React.FC<BackgroundQuestionnaireProps> = ({
             ))}
           </div>
 
-          <div key="question-11" className="space-y-2">
+          <div
+            key="question-8"
+            className={`space-y-2 ${isErrors["8"] ? "text-red-600" : ""}`}
+          >
             <label className="mb-3 mt-6 block -indent-4 text-xl">
-              11. 過去一年內，請問您較常收看哪些內容類型的社群影音？（可複選）
+              8. 過去一年內，請問您較常收看哪些內容類型的社群影音？（可複選）
             </label>
             <div className="grid grid-cols-2 gap-2">
               {[
@@ -324,7 +317,7 @@ const BackgroundQuestionnaire: React.FC<BackgroundQuestionnaireProps> = ({
                       value={option}
                       onChange={(e) =>
                         handleMultipleChoiceChange(
-                          "11",
+                          "8",
                           e.target.value.toString(),
                         )
                       }

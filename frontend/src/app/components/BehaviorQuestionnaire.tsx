@@ -17,16 +17,16 @@ const adsQuestions = [
   "4. 當我看到影片中的廣告，我認為這則廣告是與我有關的",
   "5. 當我看到影片中的廣告，我認為這則廣告是對我很有意義的",
   "6. 當我看到影片中的廣告，我認為這則廣告是對我有價值的",
-  "7. 當我看到影片中的廣告，我認為這則廣告與這部影片相配",
-  "8. 當我看到影片中的廣告，我認為這則廣告很適合這部影片",
-  "9. 當我看到影片中的廣告，我認為這則廣告與這部影片很有相關性",
-  "10. 當我看到影片中的廣告，我認為這則廣告與這部影片很搭",
 ];
 
 const videoQuestions = [
   "1. 我感覺我很能夠掌握我的觀看體驗",
   "2. 在觀看這部影片時，我能夠自由選擇我想在螢幕上觀看的廣告",
-  "3. 在觀看這部影片時，我完全不能控制螢幕上的廣告",
+  <>
+    3. 在觀看這部影片時，我
+    <span className="underline">完全不能</span>
+    控制螢幕上的廣告
+  </>,
   "4. 在觀看這部影片時，我對廣告的動作決定了我會有什麼樣的體驗",
 ];
 
@@ -39,6 +39,7 @@ const BehaviorQuestionnaire: React.FC<BehaviorQuestionnaireProps> = ({
   lastBehaviorQuestionnaire = false,
 }) => {
   const [answers, setAnswers] = useState<Record<string, string>>({});
+  const [isErrors, setIsErrors] = useState<Record<string, boolean>>({});
   const [isNextStepEnabled, setIsNextStepEnabled] = useState<boolean>(false);
 
   const handleChange = (question_index: string, value: string) => {
@@ -55,12 +56,24 @@ const BehaviorQuestionnaire: React.FC<BehaviorQuestionnaireProps> = ({
   };
 
   useEffect(() => {
-    if (showAdsQuestions && Object.keys(answers).length === 14) {
+    const maxProgress = Math.max(...Object.keys(answers).map(Number));
+    for (let i = 1; i <= maxProgress; i++) {
+      if (answers[i] === undefined || answers[i] === "") {
+        setIsErrors((prevErrors) => ({ ...prevErrors, [i]: true }));
+      } else {
+        setIsErrors((prevErrors) => ({ ...prevErrors, [i]: false }));
+      }
+    }
+    if (
+      showAdsQuestions &&
+      Object.keys(answers).length ===
+        adsQuestions.length + videoQuestions.length
+    ) {
       setIsNextStepEnabled(true);
     } else if (
       !showAdsQuestions &&
       showVideoQuestions &&
-      Object.keys(answers).length === 4
+      Object.keys(answers).length === videoQuestions.length
     ) {
       setIsNextStepEnabled(true);
     }
@@ -79,7 +92,10 @@ const BehaviorQuestionnaire: React.FC<BehaviorQuestionnaireProps> = ({
           </p>
           <form onSubmit={handleSubmit} className="space-y-8 p-4">
             {adsQuestions.map((question, index) => (
-              <div key={`question-${index + 1}`} className="space-y-2">
+              <div
+                key={`question-${index + 1}`}
+                className={`space-y-2 ${isErrors[index + 1] ? "text-red-600" : ""}`}
+              >
                 <label className="block -indent-4 text-xl">{question}</label>
                 <div className="flex justify-between">
                   {[1, 2, 3, 4, 5, 6, 7].map((value) => (
@@ -116,7 +132,7 @@ const BehaviorQuestionnaire: React.FC<BehaviorQuestionnaireProps> = ({
             {videoQuestions.map((question, index) => (
               <div
                 key={`question-${index + 1 + adsQuestions.length}`}
-                className="space-y-2"
+                className={`space-y-2 ${isErrors[index + 1 + adsQuestions.length] ? "text-red-600" : ""}`}
               >
                 <label className="block -indent-4 text-xl">{question}</label>
                 <div className="flex justify-between">

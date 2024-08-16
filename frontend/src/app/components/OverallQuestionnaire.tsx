@@ -60,7 +60,7 @@ const OverallQuestionnaire: React.FC<OverallQuestionnaireProps> = ({
       <form>
         <p className="mb-4 mt-8 -indent-5 text-xl font-bold">
           針對以上四部影片的觀看體驗，下列陳述需要您進行填答
-          <span className="font-semibold underline">
+          <span className="text-[22px] font-bold text-red-700 underline">
             （1 為非常不同意；7 為非常同意）
           </span>
           ：

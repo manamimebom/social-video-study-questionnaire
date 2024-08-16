@@ -70,15 +70,17 @@ const BehaviorQuestionnaire: React.FC<BehaviorQuestionnaireProps> = ({
     <>
       {showAdsQuestions && (
         <div key="ads-questions">
-          <p className="mb-4 mt-8 text-xl font-bold -indent-5">
+          <p className="mb-4 mt-8 -indent-5 text-xl font-bold">
             針對上部影片中出現的廣告，下列陳述需要您進行填答
-            <span className="text-[22px] font-bold underline text-red-700">（1 為非常不同意；7 為非常同意）</span>
+            <span className="text-[22px] font-bold text-red-700 underline">
+              （1 為非常不同意；7 為非常同意）
+            </span>
             ：
           </p>
           <form onSubmit={handleSubmit} className="space-y-8 p-4">
             {adsQuestions.map((question, index) => (
               <div key={`question-${index + 1}`} className="space-y-2">
-                <label className="block text-xl -indent-4">{question}</label>
+                <label className="block -indent-4 text-xl">{question}</label>
                 <div className="flex justify-between">
                   {[1, 2, 3, 4, 5, 6, 7].map((value) => (
                     <label key={value} className="flex flex-col space-y-2">
@@ -103,9 +105,11 @@ const BehaviorQuestionnaire: React.FC<BehaviorQuestionnaireProps> = ({
       )}
       {showVideoQuestions && (
         <div key="video-questions">
-          <p className="mb-4 mt-8 text-xl font-bold -indent-5">
-            針對上部影片的觀看體驗，下列陳述需要您進行填答            
-            <span className="text-[22px] font-bold underline text-red-700">（1 為非常不同意；7 為非常同意）</span>
+          <p className="mb-4 mt-8 -indent-5 text-xl font-bold">
+            針對上部影片的觀看體驗，下列陳述需要您進行填答
+            <span className="text-[22px] font-bold text-red-700 underline">
+              （1 為非常不同意；7 為非常同意）
+            </span>
             ：
           </p>
           <form onSubmit={handleSubmit} className="space-y-8 p-4">
@@ -114,7 +118,7 @@ const BehaviorQuestionnaire: React.FC<BehaviorQuestionnaireProps> = ({
                 key={`question-${index + 1 + adsQuestions.length}`}
                 className="space-y-2"
               >
-                <label className="block text-xl -indent-4">{question}</label>
+                <label className="block -indent-4 text-xl">{question}</label>
                 <div className="flex justify-between">
                   {[1, 2, 3, 4, 5, 6, 7].map((value) => (
                     <label key={value} className="flex flex-col space-y-2">

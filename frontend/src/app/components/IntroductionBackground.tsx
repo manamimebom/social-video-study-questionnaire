@@ -14,7 +14,7 @@ const IntroductionBackground: React.FC<IntroductionBackgroundProps> = ({
 
   return (
     <>
-      <p className="mb-4 text-xl tracking-wide -indent-3">第二部分：</p>
+      <p className="mb-4 -indent-3 text-xl tracking-wide">第二部分：</p>
       <p className="mb-20 text-xl leading-loose tracking-[.01em]">
         感謝您參與以上實驗，最後需要請您針對個人相關資料與社群影音觀賞習慣的問題進行填答。
       </p>

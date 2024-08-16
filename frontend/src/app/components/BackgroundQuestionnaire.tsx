@@ -11,6 +11,7 @@ const BackgroundQuestionnaire: React.FC<BackgroundQuestionnaireProps> = ({
   onSubmit,
 }) => {
   const [answers, setAnswers] = useState<Record<string, string>>({});
+  const [isErrors, setIsErrors] = useState<Record<string, boolean>>({});
   const [isNextStepEnabled, setIsNextStepEnabled] = useState<boolean>(false);
 
   const handleChange = (question_index: string, value: string) => {
@@ -42,6 +43,14 @@ const BackgroundQuestionnaire: React.FC<BackgroundQuestionnaireProps> = ({
   };
 
   useEffect(() => {
+    const maxProgress = Math.max(...Object.keys(answers).map(Number));
+    for (let i = 1; i <= maxProgress; i++) {
+      if (answers[i] === undefined || answers[i] === "") {
+        setIsErrors((prevErrors) => ({ ...prevErrors, [i]: true }));
+      } else {
+        setIsErrors((prevErrors) => ({ ...prevErrors, [i]: false }));
+      }
+    }
     if (
       Object.keys(answers).length === 8 &&
       Object.values(answers).every((value) => value !== "")
@@ -59,7 +68,10 @@ const BackgroundQuestionnaire: React.FC<BackgroundQuestionnaireProps> = ({
           以下八題是關於您的基本資料：
         </p>
         <div className="space-y-8 p-0">
-          <div key="question-1" className="space-y-2">
+          <div
+            key="question-1"
+            className={`space-y-2 ${isErrors["1"] ? "text-red-600" : ""}`}
+          >
             <label className="mb-3 mt-6 block -indent-4 text-xl">
               1. 請問您的性別是？
             </label>
@@ -76,7 +88,10 @@ const BackgroundQuestionnaire: React.FC<BackgroundQuestionnaireProps> = ({
               <option value="女性">女性</option>
             </select>
           </div>
-          <div key="question-2" className="space-y-2">
+          <div
+            key="question-2"
+            className={`space-y-2 ${isErrors["2"] ? "text-red-600" : ""}`}
+          >
             <label className="mb-3 mt-6 block -indent-4 text-xl">
               2. 請問您的年齡是？
             </label>
@@ -104,7 +119,10 @@ const BackgroundQuestionnaire: React.FC<BackgroundQuestionnaireProps> = ({
               <option value="70 歲以上">70 歲以上</option>
             </select>
           </div>
-          <div key="question-3" className="space-y-2">
+          <div
+            key="question-3"
+            className={`space-y-2 ${isErrors["3"] ? "text-red-600" : ""}`}
+          >
             <label className="mb-3 mt-6 block -indent-4 text-xl">
               3. 請問您的居住地區是？
             </label>
@@ -131,7 +149,10 @@ const BackgroundQuestionnaire: React.FC<BackgroundQuestionnaireProps> = ({
               </option>
             </select>
           </div>
-          <div key="question-4" className="space-y-2">
+          <div
+            key="question-4"
+            className={`space-y-2 ${isErrors["4"] ? "text-red-600" : ""}`}
+          >
             <label className="mb-3 mt-6 block -indent-4 text-xl">
               4. 請問您的學歷是？
             </label>
@@ -154,7 +175,10 @@ const BackgroundQuestionnaire: React.FC<BackgroundQuestionnaireProps> = ({
               </option>
             </select>
           </div>
-          <div key="question-5" className="space-y-2">
+          <div
+            key="question-5"
+            className={`space-y-2 ${isErrors["5"] ? "text-red-600" : ""}`}
+          >
             <label className="mb-3 mt-6 block -indent-4 text-xl">
               5. 請問您的職業是？
             </label>
@@ -184,7 +208,10 @@ const BackgroundQuestionnaire: React.FC<BackgroundQuestionnaireProps> = ({
               <option value="其它">其它</option>
             </select>
           </div>
-          <div key="question-6" className="space-y-2">
+          <div
+            key="question-6"
+            className={`space-y-2 ${isErrors["6"] ? "text-red-600" : ""}`}
+          >
             <label className="mb-3 mt-6 block -indent-4 text-xl">
               6. 過去一年內，請問您有使用下列哪管道收看影音內容？（可複選）
             </label>
@@ -213,7 +240,10 @@ const BackgroundQuestionnaire: React.FC<BackgroundQuestionnaireProps> = ({
               </div>
             ))}
           </div>
-          <div key="question-7" className="space-y-2">
+          <div
+            key="question-7"
+            className={`space-y-2 ${isErrors["7"] ? "text-red-600" : ""}`}
+          >
             <label className="mb-3 mt-6 block -indent-4 text-xl">
               7. 過去一年內，請問您最主要使用下列哪個管道收看影音內容？（單選）
             </label>
@@ -244,7 +274,10 @@ const BackgroundQuestionnaire: React.FC<BackgroundQuestionnaireProps> = ({
             ))}
           </div>
 
-          <div key="question-8" className="space-y-2">
+          <div
+            key="question-8"
+            className={`space-y-2 ${isErrors["8"] ? "text-red-600" : ""}`}
+          >
             <label className="mb-3 mt-6 block -indent-4 text-xl">
               8. 過去一年內，請問您較常收看哪些內容類型的社群影音？（可複選）
             </label>

@@ -21,6 +21,7 @@ const OverallQuestionnaire: React.FC<OverallQuestionnaireProps> = ({
   onSubmit,
 }) => {
   const [answers, setAnswers] = useState<Record<string, string>>({});
+  const [isErrors, setIsErrors] = useState<Record<string, boolean>>({});
   const [isNextStepEnabled, setIsNextStepEnabled] = useState<boolean>(false);
 
   const handleChange = (question_index: string, value: string) => {
@@ -36,6 +37,14 @@ const OverallQuestionnaire: React.FC<OverallQuestionnaireProps> = ({
   };
 
   useEffect(() => {
+    const maxProgress = Math.max(...Object.keys(answers).map(Number));
+    for (let i = 1; i <= maxProgress; i++) {
+      if (answers[i] === undefined || answers[i] === "") {
+        setIsErrors((prevErrors) => ({ ...prevErrors, [i]: true }));
+      } else {
+        setIsErrors((prevErrors) => ({ ...prevErrors, [i]: false }));
+      }
+    }
     if (
       Object.keys(answers).length === overallQuestions.length &&
       Object.values(answers).every((value) => value !== "")
@@ -58,7 +67,10 @@ const OverallQuestionnaire: React.FC<OverallQuestionnaireProps> = ({
         </p>
         <div className="space-y-8 p-0">
           {overallQuestions.map((question, index) => (
-            <div key={`question-${index + 1}`} className="space-y-2">
+            <div
+              key={`question-${index + 1}`}
+              className={`space-y-2 ${isErrors[index + 1] ? "text-red-600" : ""}`}
+            >
               <label className="mb-3 mt-6 block -indent-4 text-xl">
                 {question}
               </label>

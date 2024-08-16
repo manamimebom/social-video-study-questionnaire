@@ -39,6 +39,7 @@ const BehaviorQuestionnaire: React.FC<BehaviorQuestionnaireProps> = ({
   lastBehaviorQuestionnaire = false,
 }) => {
   const [answers, setAnswers] = useState<Record<string, string>>({});
+  const [isErrors, setIsErrors] = useState<Record<string, boolean>>({});
   const [isNextStepEnabled, setIsNextStepEnabled] = useState<boolean>(false);
 
   const handleChange = (question_index: string, value: string) => {
@@ -55,6 +56,14 @@ const BehaviorQuestionnaire: React.FC<BehaviorQuestionnaireProps> = ({
   };
 
   useEffect(() => {
+    const maxProgress = Math.max(...Object.keys(answers).map(Number));
+    for (let i = 1; i <= maxProgress; i++) {
+      if (answers[i] === undefined || answers[i] === "") {
+        setIsErrors((prevErrors) => ({ ...prevErrors, [i]: true }));
+      } else {
+        setIsErrors((prevErrors) => ({ ...prevErrors, [i]: false }));
+      }
+    }
     if (
       showAdsQuestions &&
       Object.keys(answers).length ===
@@ -83,7 +92,10 @@ const BehaviorQuestionnaire: React.FC<BehaviorQuestionnaireProps> = ({
           </p>
           <form onSubmit={handleSubmit} className="space-y-8 p-4">
             {adsQuestions.map((question, index) => (
-              <div key={`question-${index + 1}`} className="space-y-2">
+              <div
+                key={`question-${index + 1}`}
+                className={`space-y-2 ${isErrors[index + 1] ? "text-red-600" : ""}`}
+              >
                 <label className="block -indent-4 text-xl">{question}</label>
                 <div className="flex justify-between">
                   {[1, 2, 3, 4, 5, 6, 7].map((value) => (
@@ -120,7 +132,7 @@ const BehaviorQuestionnaire: React.FC<BehaviorQuestionnaireProps> = ({
             {videoQuestions.map((question, index) => (
               <div
                 key={`question-${index + 1 + adsQuestions.length}`}
-                className="space-y-2"
+                className={`space-y-2 ${isErrors[index + 1 + adsQuestions.length] ? "text-red-600" : ""}`}
               >
                 <label className="block -indent-4 text-xl">{question}</label>
                 <div className="flex justify-between">

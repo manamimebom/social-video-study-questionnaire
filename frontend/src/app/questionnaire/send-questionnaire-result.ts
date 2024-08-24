@@ -24,7 +24,7 @@ export default async function sendQuestionnaireResult(formData: {
       )[`${j}`];
     }
   }
-  for (let i = 1; i <= 7; i++) {
+  for (let i = 1; i <= 5; i++) {
     data[`answer_part_b_${i}`] = (
       formData["answer_part_b"] as Record<string, string>
     )[`${i}`];
